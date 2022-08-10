@@ -12,7 +12,7 @@ let currentScore = 0;
 let highscore = 0;
 let randomNumber = newRandomNumber();
 
-console.log(randomNumber);
+console.log(`Hidden Number: ${randomNumber}`);
 
 highscoreNum.textContent = highscore;
 score.textContent = currentScore;
@@ -62,7 +62,7 @@ function resetGame() {
     currentScore = 0;
     addEventListeners();
     randomNumber = newRandomNumber();
-    console.log(randomNumber);
+    console.log(`Hidden Number: ${randomNumber}`);
     userInput.value = '';
 }
 
@@ -102,7 +102,7 @@ function newGame(){
                 statusText.textContent = `New number in ${counter--}s...`;
                 setTimeout(() => {
                     randomNumber = newRandomNumber();    
-                console.log(randomNumber);
+                    console.log(`Hidden Number: ${randomNumber}`);
                 removeGreenHighlight();
                 statusText.textContent = '';
                 addEventListeners();
