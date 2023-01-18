@@ -1,3 +1,5 @@
+import { Helper } from "./test.js";
+
 // Capture elements
 const userInput = document.querySelector('#input');
 const resetBtn = document.querySelector('.again');
@@ -91,28 +93,26 @@ function flashWrong() {
     }, 750);
 };
 
-function newGame(){
+function newGame(){    
     let counter = 3;
-         
-    setTimeout(() => {
-        statusText.textContent = `New number in ${counter--}s...`;
-        setTimeout(() => {
-            statusText.textContent = `New number in ${counter--}s...`;
-            setTimeout(() => {
-                statusText.textContent = `New number in ${counter--}s...`;
-                setTimeout(() => {
-                    randomNumber = newRandomNumber();    
-                    console.log(`Hidden Number: ${randomNumber}`);
-                removeGreenHighlight();
-                statusText.textContent = '';
-                addEventListeners();
-                numberBox.textContent = '?';
-                }, 1000);
-            }, 1000);
-        }, 1000);
-    }, 1000)
+    const intervalID =  setInterval(() => {
+       statusText.textContent = `New number in ${counter}s...`;
+        if(counter === 0){
+            clearInterval(intervalID)
+            randomNumber = newRandomNumber();  
+            removeGreenHighlight();
+            statusText.textContent = '';
+            addEventListeners();
+            numberBox.textContent = '?';  
+            console.log(`Hidden Number: ${randomNumber}`);
+        }
+        counter--;
+        
+    }, 1000);
+  
        
 }
+
 
 function addRedHighlight() {
     statusText.classList.add('highlight-red');
@@ -141,3 +141,14 @@ function addEventListeners() {
     checkBtn.addEventListener('click', compareResult);
     window.addEventListener('keypress', enterPress);
 }
+
+
+///////////// JS PRACTICE ///////////
+const myJSobject = JSON.parse('{"fistName": "Dustin", "lastName": "Vidrine"}')
+console.table(myJSobject);
+
+const myString = JSON.stringify((myJSobject));
+console.log(myString)
+
+const helper = new Helper()
+helper.capitalize('dustin vidrine');
